@@ -1,42 +1,29 @@
 //import React,{Component} from 'react'
 
-//App => クラスコンポーネント
-//class App extends Component{
-  //render(){
-    //return<div>～の箇所がJSX。可読性が高い
-    //return<div>Hello World</div>
-    //const greet = "Hi, Tom!"
-    //const dom = <h1 className = "foo">{greet}</h1>;
-    //return dom;
-
-    //return(
-      //<React.Fragment>
-      //  <label htmlFor="Bar">Bar</label>
-      //  <input type= "text" onChange={()=>console.log("I am Clicked!")}></input>
-      //</React.Fragment>
-    //);
-
-    //内部処理はこんな感じ。かなり省略できる。
-    //return React.createElement(
-      //"div",
-      //null,
-      //"Hello world!"
-    //)
-  //}
-//}
-
+//これがpropsの使い方
 const App = () => {
+  const profiles = [
+    {name: "Taro",age: 10},
+    {name: "Hanako", age: 11},
+    {name: "NoName"}
+  ]
   return( 
   <div>
-    <Cat />
-    <Cat />
-    <Cat />
+    {
+      profiles.map((profile,index)=>{
+        return <User name = {profile.name} age ={profile.age} key = {index}/>
+      })
+    }
   </div>
   );
 }
 
-const Cat = () => {
-  return <div>Yahoo!!</div>
+const User = (props) => {
+  return <div>HI I am {props.name}!!, and {props.age}</div>
+}
+
+User.defaultProps = {
+  age : 1
 }
 
 export default App;
