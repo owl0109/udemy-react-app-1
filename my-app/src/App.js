@@ -1,34 +1,36 @@
 import React,{Component} from 'react'
 //prop-typesをインストール
-import PropTypes from 'prop-types'
 
 
-const App = () => {
-  const profiles = [
-    {name: "Taro",age: 10},
-    {name: "Hanako", age: 11},
-    {name: "No Name",age: 3}
-  ]
-  return( 
-  <div>
-    {
-      profiles.map((profile,index)=>{
-        return <User name = {profile.name} age ={profile.age} key = {index}/>
-      })
-    }
-  </div>
-  );
-}
+const App = () => (<Counter></Counter>);
 
-const User = (props) => {
-  return <div>HI I am {props.name}!!, and {props.age}</div>
-}
 
-//ここで定義
-//isRequiredで入力必須を付与
-User.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired
+class Counter extends Component {
+  //初期化処理
+  constructor(props){
+    super(props)
+    this.state = {count: 0}
+  }
+
+  handlePlusButton = () => {
+    //setStateを使ってstateの内容を変更する
+    this.setState({count: this.state.count + 1})
+  }
+
+  handleMinusButton = ()=>{
+    this.setState({count: this.state.count - 1})
+  }
+
+  //処理内容
+  render(){
+    return (
+      <React.Fragment>
+        <div>count：{this.state.count}</div>
+        <button onClick = {this.handlePlusButton}>+1</button>
+        <button onClick = {this.handleMinusButton}>-1</button>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;
